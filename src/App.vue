@@ -34,7 +34,7 @@ export default {
 
       /* footer info array and utilities*/
 
-      newTask: 'Write here the language',
+      newTask: 'Write here a task',
       stringTasks: [
         'Learn sass',
         'Learn vue',
