@@ -154,8 +154,8 @@ export default {
         <div class="ul-list-group list-unstyled d-flex flex-row justify-content-evenly flex-wrap p-1 border-special">
           <li v-if="stringTasks.length > 0" v-for="(string, index) in stringTasks"
             class="col-5 text-center text-white my-1">{{ string
-            }} <span v-on:click="removeTaskLi(index)" class="ms-1 text-center text-danger">X</span></li>
-          <h2 v-else class="my-2 text-center text-warning">No languages availables! 😎</h2>
+            }} <span id="span_2" v-on:click="removeTaskLi(index)" class="ms-1 text-center text-danger">X</span></li>
+          <h2 v-else class="my-2 text-center text-warning">No others tasks on the list,<br> Great! 😉</h2>
         </div>
 
       </div>
@@ -165,6 +165,8 @@ export default {
 </template>
 
 <style>
+/* header and main */
+
 header {
   border-bottom: 2px solid white;
 }
@@ -181,8 +183,54 @@ img {
   filter: drop-shadow(3px 3px 5px rgb(80, 80, 80));
 }
 
-#span_1 {
+#span_1,
+#span_2 {
   font-style: italic;
   font-weight: bold;
+  cursor: pointer;
+}
+
+/* footer */
+
+ul>li {
+  border: 1px rgb(13, 13, 119) dashed;
+  box-shadow: 2px 2px white;
+  filter: drop-shadow(2px 3px 4px rgb(106, 199, 230));
+
+  padding: .25rem;
+  font-size: large;
+  font-weight: 700;
+  font-style: oblique;
+  word-spacing: 4px;
+  letter-spacing: 1.5px;
+}
+
+span>svg {
+  fill: red;
+}
+
+.border-special {
+  border: solid 1px white;
+  box-shadow: 2px 2px grey;
+  filter: drop-shadow(1.5px 1.5px 2px black);
+}
+
+.border-special:hover {
+  transform: scale(.9);
+  border-radius: 15px;
+}
+
+input {
+  min-height: 40px;
+  min-width: 150px;
+  font-size: small;
+}
+
+.ul-list-group>li {
+  filter: drop-shadow(1.5px 1.5px 1.5px rgb(95, 205, 241));
+  border: dashed .5px white;
+  border-radius: 10px;
+  margin: auto .5rem auto .5rem;
+
 }
 </style>
