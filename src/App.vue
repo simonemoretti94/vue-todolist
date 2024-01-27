@@ -78,7 +78,7 @@ export default {
     addTask() {
       console.log('Add task: ', this.newTask);
 
-      if (this.newTask.length >= 3) {
+      if (this.newTask.length >= 3 && this.newTask !== 'Write here a task') {
         this.newTask = this.newTask.toLowerCase()
         console.log('newTask type: ', this.newTask);
         this.stringTasks.unshift('Learn ' + this.newTask);
@@ -149,7 +149,7 @@ export default {
           <button class="btn btn-ligth text-white border rounded-2 ms-1" @click="addTask()">Add task</button>
         </div>
 
-        <p v-if="errorMsg" class="my-2">{{ errorMsg }}</p>
+        <p v-if="errorMsg" class="my-2 text-white">{{ errorMsg }}</p>
 
         <div class="ul-list-group list-unstyled d-flex flex-row justify-content-evenly flex-wrap p-1 border-special">
           <li v-if="stringTasks.length > 0" v-for="(string, index) in stringTasks"
