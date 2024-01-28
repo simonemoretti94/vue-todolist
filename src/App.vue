@@ -36,13 +36,10 @@ export default {
 
       newTask: 'Write here a task',
       stringTasks: [
-        'Learn sass',
-        'Learn vue',
-        'Learn php',
-        'Learn laravel',
       ],
 
       errorMsg: false,
+      counterAddTask: 0,
 
     }
   },
@@ -50,6 +47,7 @@ export default {
 
     /* main functions */
 
+    //remove the item from toDo array
     removeItem(index) {
 
       console.log('index: ', index, ' element: ', this.toDo[index]);
@@ -57,6 +55,7 @@ export default {
       this.toDo.splice(index, 1);
     },
 
+    //change the boolean value into toDo chosen element
     changeVal(index) {
       if (this.toDo[index].done === true) {
         this.toDo[index].done = false;
@@ -79,9 +78,19 @@ export default {
       console.log('Add task: ', this.newTask);
 
       if (this.newTask.length >= 3 && this.newTask !== 'Write here a task') {
-        this.newTask = this.newTask.toLowerCase()
+        this.newTask = this.newTask.toLowerCase();
         console.log('newTask type: ', this.newTask);
-        this.stringTasks.unshift('Learn ' + this.newTask);
+        this.counterAddTask++;
+
+        const tempObj = {
+          text: this.newTask,
+          done: false,
+          link: `https://source.unsplash.com/random/200x200?sig=${this.counterAddTask}`,
+          keyword: '',
+        }
+
+        this.stringTasks.unshift(this.newTask);
+        this.toDo.unshift(tempObj);
 
         this.newTask = '';
         if (this.errorMsg !== false) {
@@ -114,10 +123,10 @@ export default {
 
       <div v-if="toDo.length > 0" id="div_card" class="col-5 m-auto my-2 d-flex flex-row border rounded-2"
         v-for="(element, index) in toDo">
-        <div class="col-6">
+        <div class="col-5 d-flex justify-content-center align-items-center">
           <img class="p-2" :src="element.link" :alt="element.keyword + ' img'">
         </div>
-        <div class="col-6 d-flex flex-column ">
+        <div class="col-7 d-flex flex-column ">
           <div class="d-flex flex-row">
             <p :class="{ 'text-decoration-line-through': !element.done }"
               class="col-10 text-white text-center flex-wrap ">
@@ -144,8 +153,8 @@ export default {
     <div class="container my-4">
       <div class="card p-3 bg-dark ">
         <div class="input-group d-flex justify-content-center mb-2">
-          <input name="input_task" v-model="newTask" type="text" class="border rounded-1 text-center text-white"
-            @keyup.enter="addTask()">
+          <input name="input_task" v-model="newTask" type="text" :class="newTask.length > 18 ? 'col-6' : ''"
+            class="border rounded-1 text-center text-white" @keyup.enter="addTask()">
           <button class="btn btn-ligth text-white border rounded-2 ms-1" @click="addTask()">Add task</button>
         </div>
 
@@ -153,7 +162,7 @@ export default {
 
         <div class="ul-list-group list-unstyled d-flex flex-row justify-content-evenly flex-wrap p-1 border-special">
           <li v-if="stringTasks.length > 0" v-for="(string, index) in stringTasks"
-            class="col-5 text-center text-white my-1">{{ string
+            class="col-5 text-center text-white flex-wrap my-1">{{ string
             }} <span id="span_2" v-on:click="removeTaskLi(index)" class="ms-1 text-center text-danger">X</span></li>
           <h2 v-else class="my-2 text-center text-warning">No others tasks on the list,<br> Great! 😉</h2>
         </div>
