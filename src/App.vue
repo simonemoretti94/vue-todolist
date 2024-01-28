@@ -41,6 +41,10 @@ export default {
       errorMsg: false,
       counterAddTask: 0,
 
+      /* input styling info */
+      xPos: 0,
+      yPos: 0,
+
     }
   },
   methods: {
@@ -101,8 +105,16 @@ export default {
     //remove li element task from footer's container
     removeTaskLi(index) {
       this.stringTasks.splice(index, 1);
-    }
+    },
+
+    /* input styling method */
+    mousePos(event) {
+      this.xPos = event.offsetX
+      this.yPos = event.offsetY
+    },
   },
+
+
 };
 </script>
 
@@ -176,7 +188,9 @@ export default {
             class="border rounded-1 text-center text-white" @keyup.enter="addTask()">
 
           <!-- button that submits the input's string of the previous tag above -->
-          <button class="btn btn-ligth text-white border rounded-2 ms-1" @click="addTask()">Add task</button>
+          <button class="btn btn-ligth text-white border rounded-2 ms-1" @click="addTask()"
+            v-on:mousemove="mousePos($event)" v-bind:style="{ backgroundColor: 'hsl(' + xPos + ',60%,10%)' }">Add
+            task</button>
 
         </div>
 
