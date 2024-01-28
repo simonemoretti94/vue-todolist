@@ -133,8 +133,8 @@ export default {
 
           <!-- top row -->
           <div class="d-flex flex-row">
-            <p :class="{ 'text-decoration-line-through': !element.done }"
-              class="col-10 text-white text-center flex-wrap ">
+            <p :class="{ 'text-decoration-line-through': !element.done }, !element.done ? 'text-primary' : 'text-white'"
+              class="col-10 text-center flex-wrap ">
               {{
                 element.text }}</p>
             <span id="span_1" class="col text-center text-danger" v-on:click="removeItem(index)">X</span>
