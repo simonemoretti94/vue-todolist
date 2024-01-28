@@ -67,13 +67,7 @@ export default {
 
     /* footer functions */
 
-    removeTask(taskIndex) {
-
-      console.log('removeTaskF says: removing task ', taskIndex, ' typeof taskindex: ', Boolean(taskIndex));
-
-      this.tasks.splice(taskIndex, 1);
-    },
-
+    //adds input task into toDo array
     addTask() {
       console.log('Add task: ', this.newTask);
 
@@ -104,6 +98,7 @@ export default {
 
     },
 
+    //remove li element task from footer's container
     removeTaskLi(index) {
       this.stringTasks.splice(index, 1);
     }
@@ -113,20 +108,30 @@ export default {
 
 <template>
   <header class="d-flex justify-content-center">
+
+    <!-- header writings -->
     <h1 class="display-1 text-center text-white my-2 p-1">Vue-todolist</h1>
 
   </header>
 
   <main class="d-flex flex-column  justify-content-evenly align-items-center">
 
+    <!-- container that binds together first block of card -->
     <div id="main_container" class="container col-7 d-flex flex-row flex-wrap justify-content-center  align-items-center">
 
+      <!-- root of iteration in toDo array -->
       <div v-if="toDo.length > 0" id="div_card" class="col-5 m-auto my-2 d-flex flex-row border rounded-2"
         v-for="(element, index) in toDo">
+
+        <!-- card's left column -->
         <div class="col-5 d-flex justify-content-center align-items-center">
           <img class="p-2" :src="element.link" :alt="element.keyword + ' img'">
         </div>
+
+        <!-- card's right column -->
         <div class="col-7 d-flex flex-column ">
+
+          <!-- top row -->
           <div class="d-flex flex-row">
             <p :class="{ 'text-decoration-line-through': !element.done }"
               class="col-10 text-white text-center flex-wrap ">
@@ -134,12 +139,19 @@ export default {
                 element.text }}</p>
             <span id="span_1" class="col text-center text-danger" v-on:click="removeItem(index)">X</span>
           </div>
+
+          <!-- bottom row -->
           <div class="col-12 d-flex justify-content-center align-items-end"><span
               :class="toDo[index].done ? 'bg-success' : 'bg-danger '" class="btn text-white border rounded-2 mb-1"
               v-on:click="changeVal(index)">{{
-                element.done }} </span></div>
+                element.done }} </span>
+          </div>
+
         </div>
+
       </div>
+
+      <!-- h2 text shown if main container is empty of todo tasks -->
       <h2 v-else class="text-center my-2 text-white">You've done well! 😎</h2>
 
     </div>
