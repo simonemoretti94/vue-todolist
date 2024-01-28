@@ -69,6 +69,7 @@ export default {
       }
     },
 
+
     /* footer functions */
 
     //adds input task into toDo array
@@ -80,11 +81,18 @@ export default {
         console.log('newTask type: ', this.newTask);
         this.counterAddTask++;
 
+        let tempKeyWord = this.newTask.split(' ').length - 1;
+        tempKeyWord = this.newTask.split(' ')[tempKeyWord];
+
+
+        console.log('tempKeyWord: ', tempKeyWord, 'newTaskSplit: ', this.newTask.split(' '), 'newtasksplitlength: ', this.newTask.split(' ').length);
+
         const tempObj = {
           text: this.newTask,
           done: false,
           link: `https://source.unsplash.com/random/200x200?sig=${this.counterAddTask}`,
-          keyword: '',
+          keyword: `
+          ${tempKeyWord}`,
         }
 
         this.stringTasks.unshift(this.newTask);
@@ -113,8 +121,16 @@ export default {
       this.yPos = event.offsetY
     },
   },
-
-
+  computed: {
+    isImportant(index) {
+      if (this.chbxVal) {
+        return 'yes'
+      }
+      else {
+        return 'no'
+      }
+    }
+  }
 };
 </script>
 
@@ -130,7 +146,6 @@ export default {
 
     <!-- container that binds together first block of cards -->
     <div id="main_container" class="container col-7 d-flex flex-row flex-wrap justify-content-center  align-items-center">
-
       <!-- root of iteration in toDo array -->
       <div v-if="toDo.length > 0" id="div_card" class="col-5 m-auto my-2 d-flex flex-row border rounded-2"
         v-for="(element, index) in toDo">
