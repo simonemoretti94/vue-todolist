@@ -116,7 +116,7 @@ export default {
 
   <main class="d-flex flex-column  justify-content-evenly align-items-center">
 
-    <!-- container that binds together first block of card -->
+    <!-- container that binds together first block of cards -->
     <div id="main_container" class="container col-7 d-flex flex-row flex-wrap justify-content-center  align-items-center">
 
       <!-- root of iteration in toDo array -->
@@ -162,20 +162,40 @@ export default {
 
   <footer class="d-flex flex-column justify-content-center align-items-center">
 
+    <!-- container that binds together second block of cards -->
     <div class="container my-4">
+
+      <!-- card structure -->
       <div class="card p-3 bg-dark ">
+
+        <!-- input group that binds together input and button  -->
         <div class="input-group d-flex justify-content-center mb-2">
+
+          <!-- btn that accepts string task and widens in a specific condition -->
           <input name="input_task" v-model="newTask" type="text" :class="newTask.length > 18 ? 'col-6' : ''"
             class="border rounded-1 text-center text-white" @keyup.enter="addTask()">
+
+          <!-- button that submits the input's string of the previous tag above -->
           <button class="btn btn-ligth text-white border rounded-2 ms-1" @click="addTask()">Add task</button>
+
         </div>
 
+        <!-- text that shows up in case newTask's lenght is equal or lesser than 3 whole numbers -->
         <p v-if="errorMsg" class="my-2 text-white">{{ errorMsg }}</p>
 
+        <!-- ul containing generated list items -->
         <div class="ul-list-group list-unstyled d-flex flex-row justify-content-evenly flex-wrap p-1 border-special">
+
+          <!-- list items generated from iteration in stringTasks arry -->
           <li v-if="stringTasks.length > 0" v-for="(string, index) in stringTasks"
             class="col-5 text-center text-white flex-wrap my-1">{{ string
-            }} <span id="span_2" v-on:click="removeTaskLi(index)" class="ms-1 text-center text-danger">X</span></li>
+            }}
+
+            <!-- span cross that calls removeTaskLi function and remove it from stringTasks array -->
+            <span id="span_2" v-on:click="removeTaskLi(index)" class="ms-1 text-center text-danger">X</span>
+          </li>
+
+          <!-- h2 text shown in case of footer container is empty of string tasks -->
           <h2 v-else class="my-2 text-center text-warning">No others tasks on the list,<br> Great! 😉</h2>
         </div>
 
