@@ -231,6 +231,10 @@ img {
   cursor: pointer;
 }
 
+#span_1:hover {
+  transform: scale(1.1);
+}
+
 /* footer */
 
 ul>li {
