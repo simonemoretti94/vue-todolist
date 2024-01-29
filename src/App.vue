@@ -61,12 +61,7 @@ export default {
 
     //change the boolean value into toDo chosen element
     changeVal(index) {
-      if (this.toDo[index].done === true) {
-        this.toDo[index].done = false;
-      }
-      else {
-        this.toDo[index].done = true;
-      }
+      this.toDo[index].done = !this.toDo[index].done;
     },
 
 
@@ -200,7 +195,7 @@ export default {
 
           <!-- btn that accepts string task and widens in a specific condition -->
           <input name="input_task" v-model="newTask" type="text" :class="newTask.length > 18 ? 'col-6' : ''"
-            class="border rounded-1 text-center text-white" @keyup.enter="addTask()">
+            class="border rounded-1 text-center text-warning" @keyup.enter="addTask()">
 
           <!-- button that submits the input's string of the previous tag above -->
           <button class="btn btn-ligth text-white border rounded-2 ms-1" @click="addTask()"
